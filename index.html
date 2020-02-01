@@ -9,19 +9,53 @@
     <script src="vue.js"></script> 
     <script src="componentes/saludos.js"></script>
     <script src="componentes/contador.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.2/dist/vuex.js"></script>
 </head>
 <body>
 
     <div id="app">
-
-        <padre></padre>
-        
+        <titulo></titulo>
     </div>
 
     <script>
-        new Vue({
-            el: '#app'
+
+        Vue.component('titulo',{
+            template: //html
+            
+            `
+            <div>
+            <h1>numero: {{ $store.state.numero }}</h1>
+            <hijo></hijo>
+            </div>
+            `
         });
+
+        Vue.component('hijo',{
+            template: //html
+            
+            `
+            <div>
+            <button @click="$store.commit('aumentar')">+</button>
+            <h1>numero: {{ $store.state.numero }}</h1>
+            </div>
+            `
+        });
+
+        const store = new Vuex.Store({
+            state:{
+                numero: 10
+            },
+            mutations:{
+                aumentar(state){
+                    state.numero ++
+                }
+            }
+        });
+
+        new Vue({
+            el:'#app',
+            store: store
+        })
     </script>
     <!--<script src="/scripts/008-componentes.js"></script>-->
 </body>
