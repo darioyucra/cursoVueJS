@@ -10,7 +10,7 @@ Vue.component('padre', {
     `,
     data() {
         return{
-            numeroPadre:0,
+            numeroPadre:1,
             nombrePadre: ''
         }
     }
